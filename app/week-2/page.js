@@ -1,17 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
+import StudentInfo from './student-info';
 
-const StudentInfo = () => {
-  return (
-    <div>
-      <h1>Aranya Das</h1>
-      <p>
-        <Link href="https://github.com/aranyadasXD/cprg306-assignments" passHref>
-        GitHub Repo
-        </Link>
-      </p>
-    </div>
-  );
-};
-
-export default StudentInfo;
+export default function Page() {
+    return (
+      <main>
+        <h1>Shopping List</h1>
+        <StudentInfo />
+      </main>
+    );
+}

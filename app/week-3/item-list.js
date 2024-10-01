@@ -72,3 +72,15 @@ const item1 = {
     quantity: 4,
     category: "household",
   };
+
+const items = [item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12];
+
+export default function ItemList() {
+  return (
+    <ul className="space-y-4 max-w-md">
+      {items.map((item, index) => (
+        <Item key={index} name={item.name} quantity={item.quantity} category={item.category} />
+      ))}
+    </ul>
+  );
+}

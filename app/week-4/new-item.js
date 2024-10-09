@@ -19,7 +19,7 @@ export default function NewItem() {
 
   return (
     <div className="flex flex-col items-center bg-black">
-      <div className="flex items-center space-x-2 bg-slate-700 p-4 shadow-md">
+      <div className="flex items-center space-x-2 bg-zinc-900 p-4 shadow-md">
         <input
           type="text"
           value={quantity}

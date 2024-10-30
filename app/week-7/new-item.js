@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Produce");
@@ -23,14 +23,13 @@ export default function NewItem() {
     event.preventDefault();
 
     const item = {
+      id: Math.random().toString(36).substring(2, 9),
       name,
       quantity,
       category,
     };
 
-    console.log(item);
-
-    alert(`Item: ${name}, Quantity: ${quantity}, Category: ${category}`);
+    onAddItem(item);
 
     setName("");
     setQuantity(1);
@@ -38,19 +37,23 @@ export default function NewItem() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center bg-black p-4 space-y-4 w-full max-w-md mx-auto rounded-lg">
-    {/* Name Field */}
+    <form 
+      onSubmit={handleSubmit} 
+      className="bg-black p-6 space-y-4 w-full max-w-md rounded-lg"
+    >
+      {/* Name Field */}
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
         placeholder="Item name"
-        className="w-full p-2 bg-zinc-900 text-white text-sm border border-gray-700 rounded-md placeholder-gray-500 focus:outline-none"
+        className="w-full p-3 bg-zinc-900 text-white text-sm border border-gray-700 rounded-md placeholder-gray-500 focus:outline-none"
       />
 
       <div className="flex justify-between w-full">
-
+        
+        {/* Quantity Controls */}
         <div className="flex items-center space-x-2 bg-zinc-900 p-2 rounded-md">
           <input
             type="text"
@@ -78,7 +81,7 @@ export default function NewItem() {
           </button>
         </div>
 
-      {/* Category Field */}
+        {/* Category Field */}
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -98,8 +101,11 @@ export default function NewItem() {
         </select>
       </div>
 
-    {/* Submit Button */}
-      <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md text-xl flex justify-center">
+      {/* Submit Button */}
+      <button 
+        type="submit" 
+        className="w-full bg-blue-600 text-white py-2 rounded-md text-xl flex justify-center"
+      >
         +
       </button>
     </form>
